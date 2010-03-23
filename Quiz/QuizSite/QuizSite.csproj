@@ -73,6 +73,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OidExtensions.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Models\QuestionType.cs" />
+    <Compile Include="Models\QuestionTypeDescription.cs" />
     <Compile Include="Models\ViewQuestionViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

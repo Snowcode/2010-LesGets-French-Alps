@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using MongoDB.Driver;
 using MongoDB.Linq;
@@ -67,6 +66,7 @@ namespace QuizSite.Controllers
 		}
 
 
+
 		public ActionResult List( string id )
 		{
 			return View( from question in questions.AsQueryable().ToList()
@@ -89,7 +89,7 @@ namespace QuizSite.Controllers
 			oldQuestion[ "Question" ] = question;
 			oldQuestion[ "QuestionType" ] = questionType;
 
-			questions.Update(oldQuestion);
+			questions.Update( oldQuestion );
 
 			return RedirectToAction( "List" );
 		}

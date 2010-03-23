@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MongoDB.Driver;
 using QuizSite.Controllers;
 
@@ -36,30 +35,5 @@ namespace QuizSite.Models
 		public string Id { get; private set; }
 		public string Question { get; private set; }
 		public string QuestionType { get; set; }
-	}
-
-
-
-	public class QuestionTypeDescription
-	{
-		public string Name { get; private set; }
-		public QuestionType QuestionType { get; private set; }
-
-
-
-		public QuestionTypeDescription( string name, QuestionType questionType )
-		{
-			Name = name;
-			QuestionType = questionType;
-		}
-	}
-
-
-
-	public enum QuestionType
-	{
-		MultiChoiceRadio,
-		MultiChoiceDropDown,
-		Text
 	}
 }

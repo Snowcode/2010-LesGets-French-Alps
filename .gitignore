@@ -1,0 +1,9 @@
+bin/
+obj/
+*.suo
+*.user
+_ReSharper/
+_*/
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*

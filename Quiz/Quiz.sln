@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.Tests", "Quiz.Tests\Quiz.Tests.csproj", "{ECE52778-CB5D-4C41-A090-2B80CAAB7838}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizSite", "QuizSite\QuizSite.csproj", "{B9DD2DED-55EE-4CFD-82F0-0604661D5F69}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECE52778-CB5D-4C41-A090-2B80CAAB7838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECE52778-CB5D-4C41-A090-2B80CAAB7838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECE52778-CB5D-4C41-A090-2B80CAAB7838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECE52778-CB5D-4C41-A090-2B80CAAB7838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9DD2DED-55EE-4CFD-82F0-0604661D5F69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9DD2DED-55EE-4CFD-82F0-0604661D5F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9DD2DED-55EE-4CFD-82F0-0604661D5F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9DD2DED-55EE-4CFD-82F0-0604661D5F69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

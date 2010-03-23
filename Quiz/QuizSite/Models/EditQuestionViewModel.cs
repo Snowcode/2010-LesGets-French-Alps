@@ -1,10 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using MongoDB.Driver;
+using QuizSite.Controllers;
 
 
 namespace QuizSite.Models
 {
-	public class NewQuestionViewModel
+	public class EditQuestionViewModel
 	{
+		public EditQuestionViewModel( Document question )
+		{
+			Id = ( (Oid)question[ "_id" ] ).ToStringWithoutQuotesIn();
+			Question = (string)question[ "Question" ];
+			QuestionType = ( (QuestionType)question[ "QuestionType" ] ).ToString();
+		}
+
+
+
+		public EditQuestionViewModel()
+		{
+		}
+
+
+
 		public IEnumerable<QuestionTypeDescription> QuestionTypes
 		{
 			get
@@ -15,6 +33,8 @@ namespace QuizSite.Models
 			}
 		}
 
+		public string Id { get; private set; }
+		public string Question { get; private set; }
 		public string QuestionType { get; set; }
 	}
 

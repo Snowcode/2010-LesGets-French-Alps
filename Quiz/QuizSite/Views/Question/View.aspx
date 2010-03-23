@@ -1,4 +1,4 @@
-<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<QuizSite.Controllers.ViewQuestionViewModel>" %>
+<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<QuizSite.Models.ViewQuestionViewModel>" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,7 +7,8 @@
     <title></title>
 </head>
 <body>
-    <div>Question: <%= ViewData.Model.Question %></div>
-    <div>Question Type: <%= ViewData.Model.QuestionType %></div>
+    <div>Question: <%= Model.Question %></div>
+    <div>Question Type: <%= Model.QuestionType %></div>
+    <div><%= Html.ActionLink("Edit", "Edit", new { id=Model.Id } ) %></div>
 </body>
 </html>

@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
 using MongoDB.Driver;
+using MongoDB.Linq;
 using QuizSite.Models;
 
 
@@ -35,7 +38,7 @@ namespace QuizSite.Controllers
 
 		public ActionResult New()
 		{
-			return View( new NewQuestionViewModel() );
+			return View( new EditQuestionViewModel() );
 		}
 
 
@@ -61,6 +64,34 @@ namespace QuizSite.Controllers
 		{
 			var question = questions.FindOne( new Document { { "_id", new Oid( id ) } } );
 			return View( new ViewQuestionViewModel( question ) );
+		}
+
+
+		public ActionResult List( string id )
+		{
+			return View( from question in questions.AsQueryable().ToList()
+			             select new ViewQuestionViewModel( question ) );
+		}
+
+
+
+		public ActionResult Edit( string id )
+		{
+			var question = questions.FindOne( new Document { { "_id", new Oid( id ) } } );
+			return View( new EditQuestionViewModel( question ) );
+		}
+
+
+
+		public ActionResult Save( string id, string question, QuestionType questionType )
+		{
+			Document oldQuestion = questions.FindOne( new Document { { "_id", new Oid( id ) } } );
+			oldQuestion[ "Question" ] = question;
+			oldQuestion[ "QuestionType" ] = questionType;
+
+			questions.Update(oldQuestion);
+
+			return RedirectToAction( "List" );
 		}
 	}
 }

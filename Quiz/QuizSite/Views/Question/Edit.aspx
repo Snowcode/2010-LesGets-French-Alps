@@ -8,8 +8,8 @@
 </head>
 <body>
 	<div id="newQuestionForm">
-	<% using( Html.BeginForm("Create", "Question") ) { %>
-		<div>Question: <input type="text" name="question"/></div>
+	<% using( Html.BeginForm("Save", "Question", new { id = Model.Id }) ) { %>
+		<div>Question: <%= Html.TextBoxFor(model => model.Question) %></div>
 		<div>Type: <%= Html.DropDownListFor( model => model.QuestionType, from qt in ViewData.Model.QuestionTypes select new SelectListItem { Text = qt.Name, Value = qt.QuestionType.ToString() }, "--Please Select--" ) %></div>
 		<input type="submit" />
     <% } %>

@@ -73,17 +73,19 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OidExtensions.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
-    <Compile Include="Controllers\ViewQuestionViewModel.cs" />
+    <Compile Include="Models\ViewQuestionViewModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\NewQuestionViewModel.cs" />
+    <Compile Include="Models\EditQuestionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Views\Question\Edit.aspx" />
     <Content Include="Views\Question\Index.aspx" />
+    <Content Include="Views\Question\List.aspx" />
     <Content Include="Views\Question\New.aspx" />
     <Content Include="Views\Question\View.aspx" />
     <Content Include="Web.config" />

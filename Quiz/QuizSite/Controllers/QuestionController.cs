@@ -54,12 +54,12 @@ namespace QuizSite.Controllers
 
 			var id = (Oid)document[ "_id" ];
 			var idWithoutQuotes = id.ToStringWithoutQuotesIn();
-			return RedirectToAction( "View", new { id = idWithoutQuotes } );
+			return RedirectToAction( "Show", new { id = idWithoutQuotes } );
 		}
 
 
 
-		public ActionResult View( string id )
+		public ActionResult Show( string id )
 		{
 			var question = questions.FindOne( new Document { { "_id", new Oid( id ) } } );
 			return View( new ViewQuestionViewModel( question ) );

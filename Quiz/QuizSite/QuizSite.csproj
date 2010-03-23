@@ -89,7 +89,7 @@
     <Content Include="Views\Question\Index.aspx" />
     <Content Include="Views\Question\List.aspx" />
     <Content Include="Views\Question\New.aspx" />
-    <Content Include="Views\Question\View.aspx" />
+    <Content Include="Views\Question\Show.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.4.1.js" />

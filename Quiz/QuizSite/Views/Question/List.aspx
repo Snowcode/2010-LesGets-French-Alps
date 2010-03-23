@@ -8,7 +8,7 @@
 </head>
 <body>
 <% foreach (var question in ViewData.Model) { %>
-    <div><%= Html.ActionLink(question.Question, "View", new { id=question.Id } ) %> <%= Html.ActionLink("Edit", "Edit", new { id=question.Id } ) %></div>
+    <div><%= Html.ActionLink(question.Question, "Show", new { id=question.Id } ) %> <%= Html.ActionLink("Edit", "Edit", new { id=question.Id } ) %></div>
 <% } %>
 </body>
 </html>

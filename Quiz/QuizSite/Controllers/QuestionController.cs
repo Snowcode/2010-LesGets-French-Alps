@@ -54,6 +54,7 @@ namespace QuizSite.Controllers
 
 			var id = (Oid)document[ "_id" ];
 			var idWithoutQuotes = id.ToStringWithoutQuotesIn();
+
 			return RedirectToAction( "Show", new { id = idWithoutQuotes } );
 		}
 
@@ -61,8 +62,7 @@ namespace QuizSite.Controllers
 
 		public ActionResult Show( string id )
 		{
-			var question = questions.FindOne( new Document { { "_id", new Oid( id ) } } );
-			return View( new ViewQuestionViewModel( question ) );
+			return View( new ViewQuestionViewModel( GetQuestionById( id ) ) );
 		}
 
 
@@ -77,21 +77,27 @@ namespace QuizSite.Controllers
 
 		public ActionResult Edit( string id )
 		{
-			var question = questions.FindOne( new Document { { "_id", new Oid( id ) } } );
-			return View( new EditQuestionViewModel( question ) );
+			return View( new EditQuestionViewModel( GetQuestionById( id ) ) );
 		}
 
 
 
 		public ActionResult Save( string id, string question, QuestionType questionType )
 		{
-			Document oldQuestion = questions.FindOne( new Document { { "_id", new Oid( id ) } } );
+			Document oldQuestion = GetQuestionById( id );
 			oldQuestion[ "Question" ] = question;
 			oldQuestion[ "QuestionType" ] = questionType;
 
 			questions.Update( oldQuestion );
 
 			return RedirectToAction( "List" );
+		}
+
+
+
+		private Document GetQuestionById( string id )
+		{
+			return questions.FindOne( new Document { { "_id", new Oid( id ) } } );
 		}
 	}
 }

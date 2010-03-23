@@ -71,8 +71,11 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IQuestion.cs" />
     <Compile Include="Controllers\OidExtensions.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\QuestionRepository.cs" />
+    <Compile Include="Controllers\SimpleQuestion.cs" />
     <Compile Include="Models\QuestionType.cs" />
     <Compile Include="Models\QuestionTypeDescription.cs" />
     <Compile Include="Models\ViewQuestionViewModel.cs" />

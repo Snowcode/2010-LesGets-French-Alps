@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using MongoDB.Driver;
-using MongoDB.Linq;
 using QuizSite.Models;
 
 
@@ -9,22 +8,14 @@ namespace QuizSite.Controllers
 {
 	public class QuestionController : Controller
 	{
-		private readonly IMongoCollection questions;
-
-
-
 		public QuestionController()
 		{
-			var mongoConnectionStringBuilder = new MongoConnectionStringBuilder();
-			mongoConnectionStringBuilder.AddServer( "localhost" );
-
-			var mongo = new Mongo( mongoConnectionStringBuilder.ToString() );
-			mongo.Connect();
-
-			var myDb = mongo.GetDatabase( "mydb" );
-
-			questions = myDb[ "questions" ];
+			questions = new QuestionRepository();
 		}
+
+
+
+		public QuestionRepository questions { get; private set; }
 
 
 
@@ -44,32 +35,24 @@ namespace QuizSite.Controllers
 
 		public ActionResult Create( string question, QuestionType questionType )
 		{
-			var document = new Document
-			               {
-			               	{ "Question", question },
-			               	{ "QuestionType", questionType }
-			               };
-			questions.Insert( document );
+			var newQuestion = questions.Insert( questionType, question );
+			var id = newQuestion.Id;
 
-
-			var id = (Oid)document[ "_id" ];
-			var idWithoutQuotes = id.ToStringWithoutQuotesIn();
-
-			return RedirectToAction( "Show", new { id = idWithoutQuotes } );
+			return RedirectToAction( "Show", new { id } );
 		}
 
 
 
 		public ActionResult Show( string id )
 		{
-			return View( new ViewQuestionViewModel( GetQuestionById( id ) ) );
+			return View( new ViewQuestionViewModel( questions.GetById( id ) ) );
 		}
 
 
 
 		public ActionResult List( string id )
 		{
-			return View( from question in questions.AsQueryable().ToList()
+			return View( from question in questions.GetAll()
 			             select new ViewQuestionViewModel( question ) );
 		}
 
@@ -77,27 +60,15 @@ namespace QuizSite.Controllers
 
 		public ActionResult Edit( string id )
 		{
-			return View( new EditQuestionViewModel( GetQuestionById( id ) ) );
+			return View( new EditQuestionViewModel( questions.GetById( id ) ) );
 		}
 
 
 
 		public ActionResult Save( string id, string question, QuestionType questionType )
 		{
-			Document oldQuestion = GetQuestionById( id );
-			oldQuestion[ "Question" ] = question;
-			oldQuestion[ "QuestionType" ] = questionType;
-
-			questions.Update( oldQuestion );
-
+			questions.Update( id, questionType, question );
 			return RedirectToAction( "List" );
-		}
-
-
-
-		private Document GetQuestionById( string id )
-		{
-			return questions.FindOne( new Document { { "_id", new Oid( id ) } } );
 		}
 	}
 }

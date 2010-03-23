@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MongoDB.Driver;
 using QuizSite.Controllers;
 
 
@@ -7,11 +6,11 @@ namespace QuizSite.Models
 {
 	public class EditQuestionViewModel
 	{
-		public EditQuestionViewModel( Document question )
+		public EditQuestionViewModel( IQuestion question )
 		{
-			Id = ( (Oid)question[ "_id" ] ).ToStringWithoutQuotesIn();
-			Question = (string)question[ "Question" ];
-			QuestionType = ( (QuestionType)question[ "QuestionType" ] ).ToString();
+			Id = question.Id;
+			Question = question.Question;
+			QuestionType = question.QuestionType.ToString();
 		}
 
 

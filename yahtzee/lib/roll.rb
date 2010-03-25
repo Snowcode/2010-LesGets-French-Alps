@@ -19,4 +19,6 @@ class Roll
     end
     output
   end
+
+
 end

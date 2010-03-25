@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+$:.unshift(File.dirname(__FILE__) + '/../lib')
+require 'dice'
+require 'roll'
+
+dice = Dice.a_set_of 5
+roll = dice.roll
+
+puts roll.display
+
+

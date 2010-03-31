@@ -25,6 +25,11 @@ class PlasticTray
     @dice_in_tray.delete_at(index)
   end
   
+  def remove(value)
+      @die_to_remove = @dice_in_tray.find{ |x| x.die_value == value.to_i}
+      @dice_in_tray.delete(@die_to_remove);
+  end
+  
   def reset_turn(turn)
     @dice_in_tray = @dice_in_tray.select { |x| x.turn_added != turn }
   end
@@ -44,7 +49,7 @@ class PlasticTray
     end
   end
 
-  def number_of(result)
+  def number_of!(result)
      @dice_in_tray.select { |x| x.die_value == result }.length
   end
 

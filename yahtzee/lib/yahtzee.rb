@@ -3,9 +3,11 @@ module Yahtzee
     require 'dice'
     require 'roll'
     require 'plastic_tray'
+    require 'scorecard'
     
     dice = Dice.a_set_of 5
     roll = dice.roll
+    scorecard = Scorecard.new();
 
     puts roll.display
     puts "Which dice do you want to keep?"
@@ -14,9 +16,17 @@ module Yahtzee
     my_plastic_tray = PlasticTray.new()
 
     begin
-      input_text = gets.strip!
+      input_text = gets.strip!.downcase
 
       case
+      when (r = input_text[/^remove (\d)$/,1	]) != nil
+        if( my_plastic_tray.remove(r) != nil )
+       	   puts r + " has been removed from your crappy plastic tray"
+       	   my_plastic_tray.display();
+
+       	else
+           puts "There is no die with value " + r + " in your crappy plastic tray"
+        end
       when input_text == "reset"
         my_plastic_tray.reset_turn(turn)
         puts "All dice from this turn have been removed..."
@@ -32,7 +42,7 @@ module Yahtzee
           if( my_plastic_tray.length < 5 )
             puts "You must have five dice before you can finish this turn"
           else
-            puts "Scoring..."
+            puts "You're ready to score.  Display the scorecard and do that thing"
             exit
           end
         else
@@ -40,6 +50,11 @@ module Yahtzee
           puts roll.display
           puts "Which dice do you want to keep?"
         end
+      when input_text == "scorecard"
+      	scorecard.display();
+      when (r = input_text[/^score (\d)$/,1	]) != nil
+      	scorecard.score( my_plastic_tray, r )
+      	scorecard.display();
       else
         die_to_keep = input_text.to_i
         if die_to_keep < 1 or die_to_keep > 6

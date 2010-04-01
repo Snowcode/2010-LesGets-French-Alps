@@ -1,6 +1,7 @@
 require File.expand_path("lib/die")
 
 #This is a comment
+#Test
 
 class PlasticTray
   include Enumerable
